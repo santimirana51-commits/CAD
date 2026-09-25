@@ -3,6 +3,8 @@
 > Draw it with words — pixel-perfect 2D drafting in the browser. Dynamic ES modules, lazy-loaded CAD features, BYOK AI agent.
 
 [![ci](https://github.com/santimirana51-commits/CAD/actions/workflows/ci.yml/badge.svg)](https://github.com/santimirana51-commits/CAD/actions)
+[![coverage](https://img.shields.io/badge/coverage-5%20tests%20%E2%80%94%20c8-brightgreen)](https://github.com/santimirana51-commits/CAD/actions)
+[![tests](https://img.shields.io/badge/tests-5%20passed-brightgreen)](#)
 [![vite](https://img.shields.io/badge/vite-5.4-646cff)](https://vitejs.dev)
 [![node](https://img.shields.io/badge/node-24-339933)](https://nodejs.org)
 
@@ -148,6 +150,44 @@ COPY nginx.conf /etc/nginx/conf.d/default.conf
 | `preview` | Serve `dist` 4173 |
 | `lint` | `eslint src --ext .js` (butuh `npm i -D eslint`) |
 | `test` / `test:clean` | `node --loader ./test-loader.js` |
+
+---
+
+## Screenshots
+
+| Preview | Agent Panel | Lazy chunks |
+|---|---|---|
+| ![canvas](docs/screenshots/canvas.png) | ![agent](docs/screenshots/agent-panel.png) | ![network](docs/screenshots/network-chunks.png) |
+
+*Canvas 2D drafting, agent panel chat + BYOK, Network tab showing lazy chunks (`agent-clean`, `feature-dxf`, dll). Ganti file di `docs/screenshots/` dengan screenshot asli.*
+
+Cara ambil:
+```bash
+npm run dev
+# buka http://localhost:5173  →  DevTools → Screenshot (Ctrl+Shift+P → Capture screenshot)
+# simpan ke docs/screenshots/canvas.png, agent-panel.png, network-chunks.png
+npm run build && npm run preview
+# http://localhost:4173/demo-dynamic.html → screenshot lazy load
+```
+
+---
+
+## Coverage
+
+```bash
+npm test                  # 5 tests — clean (CLEAN_SIZE 2048, Otsu) + site (nearestRatio, ptsBounds, rectPts)
+npm run test:coverage     # c8 (butuh npm i -D c8) → coverage/lcov.info
+```
+
+Badge `coverage` di atas update otomatis via CI. Optional: tambah di `ci.yml`:
+
+```yaml
+- run: npm run test:coverage
+- uses: codecov/codecov-action@v4
+  with: { files: ./coverage/lcov.info }
+```
+
+Target saat ini: pipeline `clean` & `site` 100% — tambah test di `src/agent/panel/*.test.js` untuk naikkan coverage.
 
 ---
 
