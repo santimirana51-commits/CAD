@@ -1,0 +1,45 @@
+#nasj-cad-language-control {
+  display: flex;
+  align-items: center;
+  flex: 0 0 auto;
+  gap: 4px;
+  height: 26px;
+  max-width: 142px;
+  padding: 0 5px 0 8px;
+  border: 1px solid var(--border-soft);
+  border-radius: 13px;
+  background: var(--bg-input);
+  color: var(--text);
+  direction: ltr;
+  -webkit-app-region: no-drag;
+}
+#nasj-cad-language-control svg { flex: none; }
+#nasj-cad-language {
+  width: 90px;
+  min-width: 0;
+  height: 100%;
+  padding: 0;
+  border: 0;
+  outline: none;
+  background: transparent;
+  color: inherit;
+  font: 12px system-ui, sans-serif;
+  cursor: pointer;
+}
+#nasj-cad-language option { color: var(--text); background: var(--bg-input); }
+#nasj-cad-language-control:focus-within { outline: 2px solid var(--accent); outline-offset: 2px; }
+@media (max-width: 640px) {
+  #nasj-cad-language-control { padding: 0 3px; margin-inline: 2px; }
+  #nasj-cad-language-control svg { display: none; }
+  #nasj-cad-language { width: 72px; }
+}
+@media (max-width: 480px) {
+  /* New/Open remain in the app menu; keep search, language and website in reach. */
+  #titlebar #qat .qat-btn:nth-child(1),
+  #titlebar #qat .qat-btn:nth-child(2) { display: none; }
+  #titlebar #nasj-web-home { margin-inline: 2px; }
+  #titlebar #nasj-web-home .arw { display: none; }
+}
+@media (max-width: 360px) {
+  #titlebar #qat .qat-btn:nth-child(7) { display: none; }
+}

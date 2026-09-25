@@ -1,0 +1,32 @@
+{
+  "panel": {
+    "title": "pixelbay CAD Agent",
+    "openOnBoot": true,
+    "minWidth": 1001,
+    "presets": [
+      { "label": "Furnished villa plan", "text": "Draw the ground floor plan of a small villa, fully furnished." },
+      { "label": "Staircase section", "text": "Draw a cross-section through a two-storey staircase." },
+      { "label": "Street façade", "text": "Draw the front elevation of a three-bay, two-storey house." },
+      { "label": "Gate valve detail", "text": "Draw a sectional shop drawing of a gate valve." }
+    ]
+  },
+  "tools": [
+    { "name": "draw_cad", "loader": "@agent/pipeline/draw.js", "chunk": "agent-draw" },
+    { "name": "draw_plan", "loader": "@features/plan/run.js", "chunk": "feature-plan", "lazy": true },
+    { "name": "cad_document", "loader": "@agent/tools/cad-document.js", "lazy": true },
+    { "name": "cad_workspace", "loader": "@agent/tools/cad-workspace.js", "lazy": true },
+    { "name": "cad_library", "loader": "@agent/tools/cad-library.js", "lazy": true }
+  ],
+  "features": [
+    { "name": "dxf", "loader": "@features/dxf/loader.js", "sizeKb": 65, "trigger": "OPEN" },
+    { "name": "threed", "loader": "@features/threed/loader.js", "sizeKb": 38, "trigger": "enter 3D view" },
+    { "name": "engine", "loader": "@core/engine/engine.js", "sizeKb": 190, "eager": false },
+    { "name": "app", "loader": "@core/shell/app.js", "sizeKb": 790, "eager": false }
+  ],
+  "tunables": {
+    "CLEAN_SIZE": 2048,
+    "EDIT_PX": 1400,
+    "VIEW_FIT": 0.8,
+    "FRAME_MS": 420
+  }
+}

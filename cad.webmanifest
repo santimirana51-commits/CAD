@@ -1,0 +1,38 @@
+{
+  "id": "/",
+  "name": "pixelbay CAD",
+  "short_name": "pixelbay",
+  "description": "pixelbay CAD — Draw it with words, pixel-perfect 2D drafting in the browser",
+  "lang": "en",
+  "dir": "ltr",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#1f1f1f",
+  "theme_color": "#171717",
+  "categories": ["productivity", "utilities", "graphics"],
+  "prefer_related_applications": false,
+  "icons": [
+    { "src": "/icons/cad-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "/icons/cad-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "/icons/cad-maskable-192.png", "sizes": "192x192", "type": "image/png", "purpose": "maskable" },
+    { "src": "/icons/cad-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ],
+  "shortcuts": [
+    {
+      "name": "New drawing",
+      "short_name": "New",
+      "description": "Open Nasjicad on a blank drawing",
+      "url": "/?new=1",
+      "icons": [{ "src": "/icons/cad-192.png", "sizes": "192x192", "type": "image/png" }]
+    },
+    {
+      "name": "Open recent",
+      "short_name": "Recent",
+      "description": "The Start page, with your recent drawings",
+      "url": "/",
+      "icons": [{ "src": "/icons/cad-192.png", "sizes": "192x192", "type": "image/png" }]
+    }
+  ]
+}

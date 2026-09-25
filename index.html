@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>pixelbay CAD — agent-panel</title>
+  <link rel="stylesheet" href="./app.css" />
+  <link rel="stylesheet" href="./tokens.css" />
+  <link rel="manifest" href="/cad.webmanifest" />
+</head>
+<body>
+  <!-- Shell skeleton — app.js fills each container (was Electron host) -->
+  <div id="titlebar">
+    <div id="app-button"><img src="/logo.png" alt="pixelbay CAD" width="24" height="24" /></div>
+    <div id="qat"></div>
+    <div id="titlebar-title"><span id="doc-title">pixelbay CAD</span></div>
+    <div id="titlebar-search"><div class="search-ico"></div><input id="search-input" placeholder="Type a command" autocomplete="off" /><div id="search-results" class="hidden"></div></div>
+    <button id="help-btn" title="Help (F1)"></button>
+    <div id="win-controls"><button id="win-min"></button><button id="win-max"></button><button id="win-close"></button></div>
+  </div>
+  <div id="ribbon"><div id="ribbon-tabs"></div><div id="ribbon-content"></div></div>
+  <div id="file-tabs"></div>
+  <div id="workspace">
+    <div id="viewport-container">
+      <canvas id="canvas"></canvas>
+      <canvas id="overlay-canvas"></canvas>
+      <div id="vp-label"></div>
+      <div id="viewcube"></div>
+      <div id="wcs-pill"></div>
+      <div id="navbar"></div>
+      <div id="ucs-icon"></div>
+      <div id="command-panel">
+        <div id="command-history"></div>
+        <div id="command-row">
+          <div id="cmd-grip"></div>
+          <button id="cmd-recent" class="cmdrow-btn" title="Recent"></button>
+          <button id="cmd-expand" class="cmdrow-btn" title="Expand"></button>
+          <span id="cmd-badge"></span>
+          <span id="command-prompt-label"></span>
+          <input id="command-input" autocomplete="off" spellcheck="false" />
+          <button id="cmd-esc" class="cmd-key">Esc</button>
+          <button id="cmd-enter" class="cmd-key">↵</button>
+        </div>
+        <div id="command-suggest" class="hidden"></div>
+      </div>
+      <div id="start-page"></div>
+    </div>
+  </div>
+  <div id="statusbar"><div id="sb-left"></div><div id="sb-toggles"></div><div id="sb-right"></div></div>
+  <div id="app-menu" class="hidden"></div>
+  <div id="ctx-menu" class="hidden"></div>
+  <div id="palette-layers" class="palette hidden"></div>
+  <div id="palette-properties" class="palette hidden"></div>
+  <div id="palette-blocks" class="palette hidden"></div>
+  <div id="palette-tools" class="palette hidden"></div>
+  <!-- legacy #app container kept for panel -->
+  <div id="app"></div>
+  <!-- Web API bridge must load before agent-panel.js (served from public/ so dist/ stays standalone) -->
+  <script src="/nasj-web-api.js"></script>
+  <script src="/icons.js"></script>
+  <script src="/icons2.js"></script>
+  <script src="/icons3.js"></script>
+  <script src="/icons4.js"></script>
+  <script src="/agent-panel.js"></script>
+  <script type="module" src="/src/entry.js"></script>
+</body>
+</html>

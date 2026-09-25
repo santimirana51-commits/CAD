@@ -1,0 +1,87 @@
+﻿/* ============================================================
+   pixelbay CAD â€” design tokens (SPEC Â§2). Owner: SHELL.
+   All names/values below the "contract tokens" banner are the
+   exact contract from the spec â€” do not rename.
+   ============================================================ */
+
+:root {
+  color-scheme: dark;
+
+  /* ---- contract tokens (SPEC Â§2 â€” exact) ---- */
+  --bg-app:#1f1f1f;          /* window chrome base */
+  --bg-titlebar:#171717;     /* topmost bar */
+  --bg-ribbon-tabs:#262626;  /* ribbon tab strip */
+  --bg-ribbon:#333333;       /* ribbon body */
+  --bg-panel-title:#2b2b2b;  /* ribbon panel caption strip */
+  --bg-canvas:#212830;       /* model space background */
+  --bg-statusbar:#2d2d2d;
+  --bg-command:rgba(36,41,46,.92);
+  --bg-palette:#252526;
+  --bg-input:#1c1c1c;
+  --border:#3f3f3f;  --border-soft:#333;
+  --text:#d6d6d6;  --text-bright:#ffffff;  --text-dim:#8a8a8a;
+  --accent:#2196d9;          /* pixelbay CAD blue (from logo) */
+  --accent-bright:#4fb3ea;
+  --accent-soft:rgba(33,150,217,.22);
+  --hover:#3d3d3d;  --active:#454545;
+  --toggle-on-bg:#1c3d54;    /* status toggle enabled */
+  --toggle-on-icon:#4fb3ea;
+  --danger:#e04c4c;
+  --sel-window:rgba(0,120,215,.16);   --sel-window-border:#3b8fd4;
+  --sel-crossing:rgba(70,200,90,.16); --sel-crossing-border:#4fc06a;
+
+  /* ---- supplementary shell tokens (SHELL-internal) ---- */
+  --font-ui:"Segoe UI","Segoe UI Variable Text",system-ui,-apple-system,sans-serif;
+  --font-mono:Consolas,"Cascadia Mono","Courier New",monospace;
+
+  --titlebar-h:38px;
+  --ribbon-tabs-h:26px;
+  --ribbon-body-h:114px;
+  --filetabs-h:26px;
+  --statusbar-h:28px;
+
+  --radius:3px;
+  --radius-lg:4px;
+  --dur:120ms;
+  --ease:cubic-bezier(.2,0,0,1);
+
+  --shadow-1:0 2px 8px rgba(0,0,0,.35);
+  --shadow-2:0 8px 28px rgba(0,0,0,.5), 0 2px 8px rgba(0,0,0,.35);
+  --hairline:rgba(255,255,255,.07);
+
+  /* ---- v2 (pixelbay CAD 2027) shell tokens ---- */
+  --bg-pill:rgba(30,34,38,.85);       /* command-history pills */
+  --sheet-active:#3a3f45;             /* active sheet tab in status bar */
+  --ucs-gray:#cfd3d7;                 /* 2D-wireframe UCS icon */
+  --vp-label:#b9bfc6;                 /* viewport label / WCS pill text */
+  --bg-card:#2a2a2b;                  /* start-page tips/about cards */
+}
+
+/* ============================================================
+   Light color theme (OPTIONS â–¸ Display â–¸ Color theme). Like
+   the industry standard's: the interface chrome lightens; the drawing area
+   keeps its dark canvas.
+   ============================================================ */
+:root[data-theme="light"] {
+  color-scheme: light;
+  --bg-app:#eaeaea;
+  --bg-titlebar:#dcdcdc;
+  --bg-ribbon-tabs:#e3e3e3;
+  --bg-ribbon:#f1f1f1;
+  --bg-panel-title:#dedede;
+  --bg-statusbar:#e4e4e4;
+  --bg-command:rgba(242,243,245,.94);
+  --bg-palette:#f4f4f4;
+  --bg-input:#ffffff;
+  --border:#b3b3b3;  --border-soft:#c9c9c9;
+  --text:#2b2b2b;  --text-bright:#000000;  --text-dim:#6e6e6e;
+  --hover:#d7d7d7;  --active:#c9c9c9;
+  --toggle-on-bg:#cfe4f3;
+  --hairline:rgba(0,0,0,.08);
+  --shadow-1:0 2px 8px rgba(0,0,0,.22);
+  --shadow-2:0 8px 28px rgba(0,0,0,.28), 0 2px 8px rgba(0,0,0,.16);
+  --bg-pill:rgba(233,235,238,.92);
+  --sheet-active:#cfd4da;
+  --vp-label:#4a4f55;
+  --bg-card:#f0f0f0;
+}

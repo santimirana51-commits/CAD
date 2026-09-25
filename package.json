@@ -1,0 +1,20 @@
+{
+  "name": "pixelbay-agent-panel",
+  "version": "2.0.0",
+  "private": true,
+  "type": "module",
+  "license": "UNLICENSED",
+  "description": "pixelbay CAD agent-panel — refactored dynamic ES modules (was flat 41-file plain scripts)",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "lint": "eslint src --ext .js || echo \"eslint not installed — run npm i -D eslint\"",
+    "test": "node --loader ./test-loader.js --test src/**/*.test.js",
+    "test:clean": "node --loader ./test-loader.js --test src/agent/pipeline/clean.test.js src/agent/pipeline/site.test.js"
+  },
+  "devDependencies": {
+    "vite": "^5.4.0",
+    "eslint": "^9.0.0"
+  }
+}

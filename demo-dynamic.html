@@ -1,0 +1,84 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>pixelbay CAD â€” Dynamic Demo (config-driven)</title>
+  <style>
+    body{font:14px system-ui;background:#0e1113;color:#d6d6d6;margin:0;padding:24px}
+    h1{font-size:18px;margin:0 0 8px}
+    .card{background:#1b1f23;border:1px solid #2a323c;border-radius:8px;padding:16px;margin:12px 0}
+    button{background:#2a6fd6;color:#fff;border:0;border-radius:6px;padding:8px 14px;margin:4px;cursor:pointer}
+    button:hover{background:#3a80e6}
+    pre{background:#0a0d0f;padding:12px;border-radius:6px;overflow:auto}
+    .ok{color:#5fbf5f}.muted{color:#9aa2ab}
+  </style>
+</head>
+<body>
+  <h1>pixelbay CAD â€” Dynamic Demo</h1>
+  <p class="muted">Config-driven + lazy chunks. Klik tombol untuk fetch chunk on-demand (lihat Network).</p>
+
+  <div class="card">
+    <h3>1) Config (src/config/agent.config.json)</h3>
+    <pre id="cfg">loadingâ€¦</pre>
+  </div>
+
+  <div class="card">
+    <h3>2) Lazy Features (dynamic import)</h3>
+    <button id="btn-clean">Load clean.js (3.5k)</button>
+    <button id="btn-site">Load site.js (9.3k)</button>
+    <button id="btn-plan">Load plan (lazy 54k)</button>
+    <button id="btn-dxf">Load DXF (65k)</button>
+    <button id="btn-3d">Load 3D (38k)</button>
+    <pre id="out">klik tombolâ€¦</pre>
+  </div>
+
+  <div class="card">
+    <h3>3) Plugin registry</h3>
+    <button id="btn-plugin">Register dummy plugin</button>
+    <pre id="plugin-out">belum ada plugin</pre>
+  </div>
+
+  <script type="module">
+    import cfg from './src/config/agent.config.json' with { type: 'json' };
+    document.getElementById('cfg').textContent = JSON.stringify(cfg, null, 2);
+
+    const out = document.getElementById('out');
+    const log = (m) => { out.textContent = m; console.log(m); };
+
+    document.getElementById('btn-clean').onclick = async () => {
+      const t = performance.now();
+      const m = await import('./src/agent/pipeline/clean.js');
+      log(`clean.js loaded in ${(performance.now()-t).toFixed(1)}ms â€” CLEAN_SIZE=${m.CLEAN_SIZE} â€” chunk agent-clean`);
+    };
+    document.getElementById('btn-site').onclick = async () => {
+      const t = performance.now();
+      const m = await import('./src/agent/pipeline/site.js');
+      log(`site.js loaded in ${(performance.now()-t).toFixed(1)}ms â€” nearestRatio(16,9)=${m.nearestRatio(16,9)} â€” chunk agent-site`);
+    };
+    document.getElementById('btn-plan').onclick = async () => {
+      const { NasjDynamic } = await import('./src/entry.js');
+      const t = performance.now();
+      await NasjDynamic.loadFeature('plan');
+      log(`feature-plan loaded in ${(performance.now()-t).toFixed(1)}ms â€” lazy chunk`);
+    };
+    document.getElementById('btn-dxf').onclick = async () => {
+      const t = performance.now();
+      const m = await import('./src/features/dxf/loader.js');
+      log(`dxf loader loaded in ${(performance.now()-t).toFixed(1)}ms â€” chunk feature-dxf`);
+    };
+    document.getElementById('btn-3d').onclick = async () => {
+      const t = performance.now();
+      const m = await import('./src/features/threed/loader.js');
+      log(`3d loader loaded in ${(performance.now()-t).toFixed(1)}ms â€” chunk feature-3d`);
+    };
+    document.getElementById('btn-plugin').onclick = async () => {
+      const { NasjDynamic } = await import('./src/entry.js');
+      await NasjDynamic.registerTool({ name: 'my_dummy', loader: () => import('./src/agent/tools/cad-document.js') });
+      const p = document.getElementById('plugin-out');
+      p.textContent = 'plugin my_dummy registered â€” window.__nasjCustomTools=' + JSON.stringify(window.__nasjCustomTools?.map(x=>x.name));
+      p.className = 'ok';
+    };
+  </script>
+</body>
+</html>

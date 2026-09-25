@@ -1,0 +1,9 @@
+Fonts used in this design:
+
+Font: Antonio
+Author: Vernon Adams
+Url: http://www.fontsquirrel.com/fonts/antonio
+
+Font: Fira Sans
+Author: Mozilla
+Url: http://www.fontsquirrel.com/fonts/fira-sans
